@@ -1,4 +1,5 @@
 import './App.css';
+import HellWorld from './components/HelloWorld';
 
 function App() {
   const name = 'Matheus'
@@ -16,6 +17,7 @@ function App() {
       <p>Olá, {nameUpper}</p>
       <p>Soma: {soma(1,2)}</p>
       <img scr={url} alt="Minha imagem"/>
+      <HellWorld></HellWorld>
     </div>
   );
 }
