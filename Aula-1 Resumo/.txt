@@ -1,0 +1,14 @@
+O que é o React?
+O instrutor dedica a parte final da aula [06:08] para explicar detalhadamente o conceito e o funcionamento do React:
+
+Biblioteca vs. Framework: Embora muitas pessoas o chamem de framework, a documentação oficial o define como uma biblioteca de JavaScript focada na criação de interfaces de usuário (front-end) [06:14]. Na prática, ele realiza funções complexas que se assemelham às de um framework [06:32].
+
+Arquitetura Baseada em Componentes: A aplicação é subdividida como um "quebra-cabeça" [07:43]. Cada elemento da tela (uma barra de navegação, um botão de input ou uma tabela) é um componente isolado que pode ser reaproveitado em diferentes partes do projeto, facilitando a manutenção e reduzindo a repetição de código [07:49].
+
+Single Page Applications (SPA): O React trabalha fortemente com o conceito de SPA [07:03]. Isso significa que a aplicação inteira roda a partir de um único arquivo HTML (index.html), e o JavaScript se encarrega de renderizar e alternar dinamicamente os componentes na tela sem a necessidade de recarregar a página a cada clique [07:11].
+
+Uso de JSX (JavaScript XML): É a sintaxe utilizada para escrever HTML diretamente dentro do código JavaScript [08:21]. Isso permite tornar o HTML dinâmico, facilitando a exibição de variáveis e a aplicação de lógicas como estruturas condicionais (if/else) diretamente na estrutura visual [08:34].
+
+Virtual DOM: O React cria uma cópia em memória do DOM real do navegador (chamada de Virtual DOM) [09:09]. Ele monitora constantemente as mudanças de estado da aplicação e, quando detecta uma alteração, atualiza apenas o pedaço específico da interface que mudou de forma extremamente rápida, sem precisar renderizar a tela toda novamente [09:16].
+
+O Processo de Build: No desenvolvimento, usamos comandos específicos do React, mas, ao finalizar o projeto para produção, a ferramenta realiza um "build" [10:09]. Esse processo compila e padroniza tudo em arquivos puros de HTML, CSS e JavaScript que qualquer navegador web consegue interpretar [10:15].

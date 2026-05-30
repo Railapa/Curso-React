@@ -1,0 +1,43 @@
+O que é o React?
+O React é uma biblioteca JavaScript de código aberto focada na criação de interfaces de usuário (UI). Ele foi criado pelo Facebook (Meta) em 2011 para resolver um problema interno: a interface do feed de notícias e do chat estava ficando tão complexa que as atualizações em tempo real começaram a travar e a ficar difíceis de manter.
+
+Embora muitas pessoas o chamem de framework, a própria documentação do React o define como uma biblioteca. A diferença prática é que um framework dita toda a estrutura e as regras de como você deve construir seu aplicativo, enquanto uma biblioteca foca em resolver apenas um problema (neste caso, a renderização da interface visual) e dá total liberdade para você escolher as outras ferramentas que quer usar em conjunto (para rotas, requisições, etc.).
+
+Para que ele serve?
+O React serve para construir a parte visual de aplicações web com as quais o usuário interage (o Front-End). Ele é ideal para criar desde páginas simples até aplicações web extremamente robustas, dinâmicas e de alta performance.
+
+Empresas como Netflix, Instagram, Airbnb, WhatsApp Web, Spotify e o próprio Facebook utilizam o React para construir suas plataformas.
+
+Os Pilares do React (Como ele funciona?)
+Para entender o poder do React, precisamos conhecer os seus três conceitos principais:
+
+1. Componentização (O "Quebra-Cabeça")
+No desenvolvimento web tradicional, você criava arquivos HTML gigantescos. No React, você divide a interface da sua aplicação em pequenos pedaços isolados e independentes chamados Componentes.
+
+Pense em uma página do Instagram:
+
+A barra de navegação superior é um componente.
+
+O cartão de uma postagem (com a foto, botão de curtir e comentários) é outro componente.
+
+A barra de Stories é outro componente.
+
+Por que isso é incrível? * Reutilização de código: Você cria o componente de um botão ou de um card de produto apenas uma vez e pode usá-lo em centenas de páginas diferentes.
+
+Fácil manutenção: Se o botão de curtir apresentar um erro, você só precisa mexer no arquivo específico daquele componente, sem risco de quebrar o resto do site.
+
+2. Virtual DOM (Performance Elevada)
+O DOM (Document Object Model) é a estrutura que o navegador cria para entender o HTML de uma página. Quando você usa JavaScript puro para mudar algo na tela (como abrir um menu), o navegador precisa atualizar e redesenhar essa estrutura, o que pode ser lento em sites grandes.
+
+O React resolve isso criando o Virtual DOM, que é uma cópia leve do DOM real guardada na memória. Quando algo muda no site:
+
+O React atualiza primeiro esse Virtual DOM.
+
+Ele compara o Virtual DOM atualizado com a versão anterior para ver exatamente o que mudou (um processo chamado de reconciliação).
+
+Ele vai no DOM real do navegador e atualiza apenas o pedaço que sofreu alteração (por exemplo, apenas o número de curtidas de uma foto, sem recarregar o resto da página). Isso torna a navegação extremamente rápida e fluida.
+
+3. JSX (JavaScript + XML)
+No React, em vez de escrever o HTML em um arquivo e o JavaScript em outro, você escreve tudo junto usando uma sintaxe chamada JSX. Ela permite que você escreva códigos que se parecem muito com HTML diretamente dentro do arquivo JavaScript.
+
+Isso torna a interface muito mais dinâmica, pois você pode usar toda a lógica do JavaScript (como listas, condicionais e variáveis) diretamente na estrutura visual do seu componente.
