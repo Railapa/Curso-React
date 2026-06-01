@@ -1,0 +1,29 @@
+1. Estilização Global
+O instrutor explica que o estilo global serve para definir regras visuais que devem afetar a aplicação inteira uniformemente (como zerar margens, definir uma fonte padrão para o site ou cores de fundo gerais).
+
+Como funciona: O arquivo principal index.css é o responsável por isso. Ele é importado diretamente no ponto de entrada do JavaScript (index.js).
+
+Qualquer tag HTML estilizada nesse arquivo (como body, h1 ou p) terá seu estilo replicado de maneira idêntica em todos os componentes da aplicação.
+
+2. Estilização por Componente: CSS Modules
+Em projetos grandes e tradicionais, arquivos CSS costumam acumular milhares de linhas, tornando a manutenção difícil e gerando conflitos onde uma classe sobrescreve a outra sem querer. O React resolve isso usando o conceito de CSS Modules, permitindo criar estilos isolados e exclusivos para cada componente.
+
+Regras de Criação e Sintaxe:
+Nomenclatura (Convenção): O arquivo CSS deve ser criado usando obrigatoriamente a extensão .module.css (Exemplo: se o seu componente se chama Frase.js, o arquivo de estilo deve ser Frase.module.css). O Webpack (gerenciador interno do React) identificará essa extensão para isolar o escopo do estilo.
+
+Proibição do uso de traços (-): No CSS tradicional, é comum criar classes separadas por traço (ex: .frase-container). No CSS Modules, evite usar traços. Prefira o padrão CamelCase (.fraseContainer) ou underlines (.frase_container).
+
+Por que isso ocorre? Como as classes serão importadas e lidas como propriedades de um objeto JavaScript dentro do componente, escrever Styles.frase-container fará com que o JavaScript interprete o traço como um sinal de subtração, quebrando o código.
+
+Como aplicar no Componente (Passo a Passo):
+Importação Especial: Em vez de importar o CSS de forma solta, nós o importamos como se fosse um objeto ou componente, associando-o a um nome por convenção chamado styles:
+
+import styles from './Frase.module.css';
+
+2. **Aplicação no JSX:** O objeto `styles` agora encapsula todas as classes criadas naquele arquivo específico como se fossem propriedades de objeto. Para aplicar na tag, passamos a propriedade dinamicamente dentro de chaves no `className`:
+   ```jsx
+<div className={styles.fraseContainer}>
+    <p className={styles.fraseContent}>Este é um texto estilizado!</p>
+</div>
+🌟 Vantagens do CSS Modules
+O grande diferencial é a especificidade e escopo. Mesmo que você crie uma classe genérica como .container em vários arquivos .module.css diferentes, o React gera automaticamente um hash aleatório no nome da classe ao compilar o projeto (ex: fraseContainer_hash123). Isso garante que o estilo de um componente nunca vazará ou interferirá no visual de outro componente, assegurando total independência estilística no projeto.

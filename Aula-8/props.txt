@@ -1,0 +1,44 @@
+🚀 Avançando em Props: Validação e Valores Padrão
+Quando você trabalha em equipe ou constrói componentes complexos, apenas confiar que o componente pai enviará o dado correto pode gerar bugs. Para evitar isso, o React disponibiliza duas ferramentas para tipar e preencher propriedades.
+
+1. PropTypes (Validação de Tipos)
+O PropTypes permite que você defina de forma explícita qual o tipo de dado (String, Number, Array, Object, etc.) cada prop deve receber [03:48]. Se outro desenvolvedor (ou você mesmo) passar o tipo errado por engano, o React não quebrará o site, mas emitirá um aviso detalhado de erro (Warning) no console do navegador [04:18].
+
+Como utilizar na prática:
+Importação: O pacote já vem integrado no ecossistema do React instalado pelo Create React App [03:07]:
+
+JavaScript
+import PropTypes from 'prop-types';
+Configuração: Logo abaixo da função do seu componente (como o componente Item.js do vídeo), você declara o objeto propTypes (com o p minúsculo) mapeando as propriedades [03:21]:
+
+JavaScript
+function Item({ marca, ano_lancamento }) {
+    return (
+        <li>{marca} - {ano_lancamento}</li>
+    );
+}
+
+Item.propTypes = {
+    marca: PropTypes.string.isRequired, // Define que 'marca' deve ser STRING e é OBRIGATÓRIA
+    ano_lancamento: PropTypes.number,   // Define que 'ano_lancamento' deve ser um NÚMERO
+};
+O modificador .isRequired: Ao adicionar esta propriedade [04:54], você torna o envio daquela prop obrigatório. Se o componente pai esquecer de declará-la, um aviso será exibido imediatamente no console [05:14].
+
+Passagem correta de números no JSX: O instrutor relembra uma dica importante: enquanto strings normais são passadas entre aspas (marca="Chevrolet"), números ou tipos puros devem ser enviados sempre entre chaves (ano_lancamento={1999}) [02:31].
+
+2. DefaultProps (Valores Padrão)
+O defaultProps serve para definir um valor padrão ("reserva") para as propriedades caso o componente pai simplesmente não envie nada [01:08].
+
+É uma alternativa muito limpa para evitar que a tela fique em branco ou com campos indefinidos (undefined) antes que os dados carreguem de um banco de dados [07:39].
+
+Como utilizar na prática:
+Você não precisa importar nenhum pacote extra para isso, basta declarar o objeto defaultProps abaixo do seu componente [06:43]:
+
+JavaScript
+Item.defaultProps = {
+    marca: "Faltou a marca",
+    ano_lancamento: 0,
+};
+⚠️ Detalhe crucial sobre o .isRequired: > Se você definiu uma prop como obrigatória com .isRequired, mas declarou um valor padrão para ela no defaultProps, o React não vai disparar o erro de falta de dados [07:08]. O valor padrão assume o controle e preenche a propriedade automaticamente [07:13].
+
+Esses dois recursos são considerados excelentes práticas de mercado porque documentam o comportamento esperado do componente diretamente no código-fonte [06:22].
