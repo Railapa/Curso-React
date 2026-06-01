@@ -1,0 +1,40 @@
+📂 Explicação Detalhada dos Arquivos Gerados
+Após rodar o comando de instalação, o React cria uma estrutura padrão de arquivos e pastas. Matheus detalha o papel de cada um deles [07:15]:
+
+1. Arquivos na Raiz do Projeto
+package.json: É o arquivo de configuração principal do projeto Node [07:35]. Ele lista todas as dependências que o React precisa para funcionar e os scripts de execução (como o start para rodar o projeto e o build para gerar a versão final de produção) [07:42].
+
+package-lock.json: Registra as versões exatas de cada dependência instalada para garantir consistência no ambiente de desenvolvimento [08:05].
+
+.gitignore: Informa ao Git quais arquivos e pastas não devem ser enviados para o repositório (como a pasta node_modules) [08:12].
+
+README.md: Arquivo em formato Markdown com instruções gerais e documentação básica sobre como rodar o projeto [07:29].
+
+2. Pasta node_modules/
+Contém todas as dependências e códigos de terceiros que o React e suas ferramentas internas precisam para rodar [08:17]. O instrutor enfatiza que esta pasta é gigantesca, descartável (pode ser recriada a qualquer momento com o comando npm install) e que nunca devemos mexer ou alterar nada dentro dela [08:32].
+
+3. Pasta public/
+Contém os arquivos estáticos que o navegador vai ler diretamente. O principal deles é:
+
+index.html: É a única página HTML real de toda a aplicação (já que o React cria uma Single Page Application) [09:01]. O instrutor mostra que dentro desse arquivo existe uma tag específica:
+
+HTML
+<div id="root"></div>
+É exatamente a partir dessa div com o id root que o React vai se injetar e renderizar toda a interface gerada via JavaScript [09:17].
+
+Também abriga o arquivo favicon.ico (ícone da aba do navegador), imagens de logo do React e o arquivo manifest.json [08:52].
+
+4. Pasta src/ (Source / Código-Fonte)
+É a pasta mais importante, onde passamos a maior parte do tempo programando, pois ela guarda o código em JavaScript, os estilos (CSS) e as imagens da aplicação [09:46].
+
+Os arquivos base gerados dentro dela são:
+
+index.js: É o arquivo de partida (ponto de entrada) do JavaScript [10:04]. Sua única função é fazer o Bootstrap da aplicação, ou seja, pegar o componente principal (App.js), inicializar o React e injetá-lo diretamente dentro daquela div id="root" do arquivo index.html [10:11].
+
+App.js: É o componente principal da aplicação [10:11]. Tudo o que é visualizado na tela ao abrir o projeto pela primeira vez vem do código escrito dentro deste arquivo [11:20]. O instrutor demonstra isso limpando o código padrão e escrevendo um simples "Olá, React!" para provar que a alteração reflete na hora no navegador [11:46].
+
+App.css e index.css: Arquivos responsáveis pela estilização. O index.css costuma funcionar para os estilos globais da aplicação [11:00], enquanto o App.css traz as regras visuais específicas do componente App.
+
+App.test.js e setupTests.js: Arquivos voltados para a criação e configuração de testes automatizados da aplicação (recurso que não é o foco deste curso introdutório) [11:13].
+
+reportWebVitals.js: Um script padrão que analisa e reporta métricas de performance do site para o desenvolvedor [12:53].

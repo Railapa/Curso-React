@@ -1,0 +1,30 @@
+O que é o JSX e como ele funciona?
+O instrutor explica que o JSX se comporta visualmente de forma muito parecida com o HTML tradicional, contendo tags de abertura e fechamento, atributos e classes [00:43]. No entanto, por trás dos panos, esse código é processado pelo React como JavaScript [04:41]. Devido a isso, ele possui regras mais rígidas e recursos dinâmicos:
+
+Validação Rigorosa: Diferente do HTML puro (no qual o navegador costuma ignorar tags mal fechadas), o JSX gerará erros imediatos na tela se houver falhas de sintaxe, como o esquecimento do fechamento de uma tag [04:13].
+
+Tags Auto-contidas (Self-closing): Elementos que não possuem conteúdo interno (como a tag de imagem <img>) precisam obrigatoriamente terminar com uma barra de fechamento (<img />), o que não é estritamente exigido no HTML padrão, mas é uma regra inegociável no JSX [09:09].
+
+Principais Recursos do JSX
+1. Interpolação de Variáveis e Lógica (O uso das Chaves {})
+O grande poder do JSX é a capacidade de mesclar lógica JavaScript diretamente na estrutura visual através do uso de chaves {} [01:49]:
+
+Exibição Dinâmica: Ao declarar uma variável dentro da função do componente (como const name = 'Matheus'), você pode renderizá-la no "HTML" apenas escrevendo {name} [05:35].
+
+Processamento: Também é possível executar operações matemáticas diretas (como {2 + 2} que renderizará o número 4) [07:04] ou até mesmo chamar funções customizadas que retornem valores dinâmicos [07:35].
+
+2. Atributos Dinâmicos
+Você pode associar o valor de qualquer atributo de uma tag (como o link de uma imagem no atributo src) a uma variável JavaScript [08:36]. Em vez de usar aspas tradicionais, removem-se as aspas e inserem-se as chaves com o nome da variável:
+
+JavaScript
+const url = "https://via.placeholder.com/150";
+<img src={url} alt="Minha imagem dinâmica" />
+3. Elemento Pai Único (Regra do Retorno)
+No bloco de retorno (return) de um componente React, todos os elementos JSX devem estar encapsulados dentro de um único elemento pai [10:01]. Se você tentar retornar várias tags soltas no mesmo nível (por exemplo, um <h1>, um <p> e um <h2> sem nada em volta), o React quebrará com um erro de compilação [10:16]. Para corrigir, é obrigatório envolvê-los dentro de uma tag de agrupamento, como uma <div> [10:33].
+
+4. A Palavra Reservada className
+Uma das principais pegadinhas para iniciantes envolve a aplicação de classes de estilização CSS. No HTML tradicional, utiliza-se a palavra class. Porém, no JavaScript, a palavra class é reservada para a criação de classes de objetos orientados a objetos [11:15].
+
+Por esse motivo, no JSX, deve-se utilizar obrigatoriamente o atributo className [11:40]. Se você escrever class, o navegador até aplicará o estilo visual, mas o console gerará um aviso de erro (warning) apontando a falha de conformidade com o React [11:07].
+
+Ao longo do vídeo, o instrutor demonstra de forma prática no VS Code como criar essas variáveis, invocar funções e corrigir erros de classe para habituar o desenvolvedor com o fluxo fundamental de escrita no React [11:58].

@@ -1,0 +1,49 @@
+O que são Props e para que servem?
+O instrutor explica que as Props (abreviação de properties) são valores ou dados passados de um componente pai para um componente filho [00:24]. Elas funcionam como os argumentos de uma função comum, permitindo que o fluxo de dados caminhe de cima para baixo na aplicação [01:39].
+
+Componentes Dinâmicos: A principal função das props é transformar componentes estáticos em blocos dinâmicos e reutilizáveis [00:40]. Em vez de um componente exibir sempre o mesmo texto fixo, ele pode renderizar informações totalmente diferentes dependendo dos dados que o componente pai enviar [00:59].
+
+Apenas Leitura: Uma regra fundamental do React é que as props são imutáveis (somente leitura) [02:18]. O componente filho apenas recebe esses dados para exibi-los ou utilizá-los, mas nunca deve tentar alterar o valor de uma prop diretamente [02:18].
+
+Passando Props na Prática
+1. Sintaxe de Atributo
+No componente pai (App.js), a prop é enviada na própria tag de chamada do componente, simulando um atributo HTML padrão (como o src de uma imagem ou o href de um link) [01:11].
+
+JavaScript
+// Passando uma string diretamente
+<SeuComponente nome="Matheus" />
+
+// Passando uma variável dinâmica (usa-se chaves {})
+const nomeUsuario = "Maria";
+<SeuComponente nome={nomeUsuario} />
+2. Resgatando as Props no Componente Filho
+No arquivo do componente filho, a palavra props deve ser adicionada como o argumento da função [01:47]. Todos os atributos enviados pelo pai chegam encapsulados dentro desse objeto JavaScript [01:58]. Para renderizá-los no JSX, basta usar as chaves {props.nomeDoAtributo} [04:35].
+
+Otimização: Destructuring (Desestruturação)
+Quando um componente passa a receber muitas propriedades (como o componente Pessoa.js criado na aula, que recebe nome, idade, profissao e foto) [06:52], o código JSX pode começar a ficar repetitivo e poluído devido à constante necessidade de escrever props.nome, props.idade, etc. [09:24].
+
+Para resolver isso, o instrutor demonstra o uso do recurso Destructuring do JavaScript moderno [09:33]. Em vez de receber o objeto props genérico, nós desestruturamos as propriedades diretamente no argumento da função do componente, extraindo apenas as variáveis que serão utilizadas [09:45]:
+
+JavaScript
+// Sem desestruturação (Mais poluído)
+function Pessoa(props) {
+    return (
+        <div>
+            <h2>Nome: {props.nome}</h2>
+            <p>Idade: {props.idade}</p>
+        </div>
+    );
+}
+
+// COM desestruturação (Muito mais limpo e legível)
+function Pessoa({ nome, idade, profissao, foto }) {
+    return (
+        <div>
+            <img src={foto} alt={nome} />
+            <h2>Nome: {nome}</h2>
+            <p>Idade: {idade}</p>
+            <p>Profissão: {profissao}</p>
+        </div>
+    );
+}
+Essa técnica elimina a necessidade de repetir a palavra props. no corpo do código, tornando o JSX consideravelmente mais limpo, legível e fácil de dar manutenção [10:25].
