@@ -1,0 +1,50 @@
+⚡ Manipulação de Eventos no React
+Os eventos no React são muito parecidos com os eventos do DOM no JavaScript tradicional (vanilla), mas com duas diferenças essenciais de sintaxe e comportamento [01:04]:
+
+Sintaxe CamelCase: Em vez de usar tudo minúsculo (como onclick ou onsubmit), o JSX exige o padrão CamelCase: onClick, onSubmit, onChange [01:26].
+
+Atribuição Direta: No JavaScript puro, você costumava selecionar o elemento (querySelector) e atrelar um addEventListener [01:12]. No React, você declara a função diretamente como um atributo da tag HTML [01:26].
+
+1. Evento de Clique (onClick)
+Para disparar uma função quando o usuário clica em um elemento (como um botão), passamos o nome da função dentro de chaves no atributo onClick [03:40].
+
+Atenção à Invocação: Passamos apenas a referência da função pelo nome (ex: {meuEvento}). Não coloque parênteses (como {meuEvento()}), caso contrário, o React executará a função imediatamente assim que a página carregar, e não no momento do clique [03:47].
+
+JavaScript
+function Evento() {
+    function meuEvento() {
+        console.log("Fui ativado!");
+    }
+
+    return (
+        <div>
+            <button onClick={meuEvento}>Ativar!</button>
+        </div>
+    );
+}
+Props com Eventos: O instrutor demonstra que a função chamada pelo evento também consegue ler perfeitamente variáveis ou propriedades (props) que o componente recebeu do pai, tornando a ação dinâmica [05:39].
+
+2. Evento de Formulário (onSubmit) e o Envio de Dados
+Quando lidamos com formulários, o evento principal não é o clique do botão, mas sim a submissão do formulário na tag <form> através do atributo onSubmit [07:21].
+
+O problema do recarregamento padrão (Reload):
+Por padrão, o comportamento do HTML ao submeter um formulário é enviar os dados para um servidor e recarregar a página inteira [08:00]. No ecossistema do React (que opera como uma Single Page Application), nós não queremos que a página recarregue, pois isso faria a aplicação perder o seu estado em memória [08:33].
+
+A Solução: e.preventDefault()
+Para evitar o reload e permitir que o JavaScript processe os dados (por exemplo, enviando-os de forma assíncrona via API/AJAX), capturamos o objeto do evento (comumente chamado de e ou event) como argumento da nossa função e executamos o método e.preventDefault() [08:47].
+
+JavaScript
+function Form() {
+    function cadastrarUsuario(e) {
+        e.preventDefault(); // Cancela o comportamento padrão de recarregar a página!
+        console.log("Usuário cadastrado com sucesso no front-end!");
+    }
+
+    return (
+        <form onSubmit={cadastrarUsuario}>
+            <input type="text" placeholder="Digite seu nome" />
+            <input type="submit" value="Cadastrar" />
+        </form>
+    );
+}
+Ao aplicar o e.preventDefault(), a aplicação ganha total controle sobre o fluxo de dados, permitindo salvar informações e dar retornos visuais rápidos ao usuário sem nenhuma interrupção ou piscada na tela [09:05].

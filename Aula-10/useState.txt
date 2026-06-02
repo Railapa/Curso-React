@@ -1,0 +1,75 @@
+📦 Entendendo o useState na Prática
+O useState é um Hook do React [01:00]. Hooks são funções nativas que permitem "conectar" recursos internos da biblioteca (como controle de ciclo de vida e gerenciamento de memória) aos nossos componentes de função.
+
+O objetivo principal do useState é gerenciar o estado de um componente de forma simples [00:53].
+
+O que é o "Estado" (State)?
+No React, o estado representa o conjunto de dados ou informações dinâmicas com as quais o componente está lidando em tempo real (como o texto que o usuário digita em um input, se um menu está aberto ou fechado, ou dados carregados de uma API) [01:00].
+
+Por que não usamos variáveis comuns (let ou var)?
+Se você criar uma variável comum em JavaScript (como let nome = "Raí") e tentar alterá-la após um clique de botão, o valor até muda na memória do computador, mas o React não atualiza a tela do usuário.
+O useState avisa o React sempre que um dado muda, forçando o componente a se renderizar novamente para refletir o novo valor na tela de forma instantânea.
+
+A Sintaxe do useState
+Para criar um estado, utilizamos a desestruturação de um array com duas posições logo no início do componente [04:43]:
+
+JavaScript
+import { useState } from 'react'; // 1. Obrigatório importar do pacote 'react'
+
+const [dados, setDados] = useState('Valor Inicial'); // 2. Declaração padrão
+dados (Variável de leitura): É o nome da constante que armazena o valor atual do estado. Você usa esse nome no JSX para exibir o dado na tela [05:06].
+
+setDados (Função de escrita): É a função exclusiva que você deve chamar sempre que precisar modificar o valor do estado [05:12]. Por convenção de mercado, ela sempre começa com a palavra set seguida do nome da variável [05:01].
+
+useState('Valor Inicial'): O argumento passado dentro dos parênteses define qual será o valor padrão desse estado assim que a aplicação carregar (pode ser uma string vazia "", o número 0, um booleano false, etc.) [05:18].
+
+💻 Manipulando Dados com Inputs (onChange)
+No vídeo, o instrutor demonstra o uso mais clássico do useState: capturar em tempo real o que o usuário digita dentro de um formulário (Campos de Nome e Senha) [02:49].
+
+Para isso, utiliza-se o gatilho do evento onChange (que detecta qualquer mudança ou caractere digitado no campo) [01:30] combinado com uma arrow function que captura a propriedade e.target.value (o texto exato contido no input naquele milissegundo) [05:46]:
+
+JavaScript
+import { useState } from 'react';
+
+function Formulario() {
+    // Criando os estados para armazenar o nome e a senha
+    const [name, setName] = useState('');
+    const [password, setPassword] = useState('');
+
+    function cadastrarUsuario(e) {
+        e.preventDefault(); // Bloqueia o recarregamento da página
+        
+        // Aqui acessamos o valor final salvo nos estados para simular um envio ao servidor
+        console.log(`Usuário ${name} cadastrado com a senha: ${password}`); [00:08:17]
+    }
+
+    return (
+        <div>
+            <h2>Cadastro:</h2>
+            <form onSubmit={cadastrarUsuario}>
+                <div>
+                    <label htmlFor="name">Nome:</label>
+                    <input 
+                        type="text" 
+                        id="name" 
+                        placeholder="Digite seu nome"
+                        onChange={(e) => setName(e.target.value)} // Atualiza o estado a cada letra digitada [00:05:46]
+                    />
+                </div>
+                <div>
+                    <label htmlFor="password">Senha:</label>
+                    <input 
+                        type="password" 
+                        id="password" 
+                        placeholder="Digite sua senha"
+                        onChange={(e) => setPassword(e.target.value)} // Atualiza o estado da senha [00:07:42]
+                    />
+                </div>
+                <input type="submit" value="Cadastrar" />
+            </form>
+        </div>
+    );
+}
+💡 Detalhe de Acessibilidade no JSX
+O instrutor faz uma observação importante sobre o uso de Labels [03:03]. No HTML comum, usamos o atributo for para vincular uma Label a um Input. No entanto, no JavaScript, a palavra for é uma palavra reservada para laços de repetição [03:15].
+Por isso, no JSX do React, substitui-se o atributo for por htmlFor [03:15].
