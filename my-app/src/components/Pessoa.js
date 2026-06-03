@@ -3,7 +3,7 @@ function Pessoa({nome,idade,profissao}){
         <div>
             <h2>Nome: {nome}</h2>
             <p>Idade: {idade}</p>
-            <p>Profissão: {nome}</p>
+            <p>Profissão: {profissao}</p>
         </div>
     )
 }

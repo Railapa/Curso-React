@@ -16,6 +16,7 @@ JavaScript
 // Passando uma variável dinâmica (usa-se chaves {})
 const nomeUsuario = "Maria";
 <SeuComponente nome={nomeUsuario} />
+
 2. Resgatando as Props no Componente Filho
 No arquivo do componente filho, a palavra props deve ser adicionada como o argumento da função [01:47]. Todos os atributos enviados pelo pai chegam encapsulados dentro desse objeto JavaScript [01:58]. Para renderizá-los no JSX, basta usar as chaves {props.nomeDoAtributo} [04:35].
 

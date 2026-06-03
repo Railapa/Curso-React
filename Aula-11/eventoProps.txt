@@ -1,0 +1,53 @@
+🔁 Passando Eventos/Funções por Props
+Nas aulas anteriores, você aprendeu a passar dados estáticos (como strings ou números) de um componente pai para um componente filho. Nesta aula, o instrutor demonstra que também é possível enviar funções inteiras através das props [00:07].
+
+Por que isso é útil? (Casos de Uso Real)
+Imagine um e-commerce: você tem uma página que lista vários produtos (Componente Pai) e, para cada produto, existe um card visual com o botão "Adicionar ao Carrinho" (Componente Filho) [01:01].
+
+A lógica de manipulação e controle do carrinho de compras deve ficar centralizada na página principal (no Pai). Logo, o componente filho (o botão do card) precisa de uma maneira de avisar o componente pai: "Ei, eu fui clicado, adicione este item aqui!" [01:08]. É aí que entra a passagem de funções via props [01:32].
+
+Como Funciona na Prática (Passo a Passo)
+1. Criando a Lógica no Componente Pai
+No componente de nível superior (no exemplo do vídeo, o componente Evento.js), você declara a função que contém a regra de negócio [02:12]. Na tag de chamada do componente filho, você cria uma prop (por convenção chamada de event) e passa o nome da sua função como valor [05:37]:
+
+JavaScript
+// No Componente Pai (Evento.js)
+import Button from './components/Button';
+
+function Evento() {
+    function meuEvento() {
+        console.log("Ativando o primeiro evento do Pai!");
+    }
+
+    return (
+        <div>
+            <p>Clique para disparar:</p>
+            {/* Passando a função 'meuEvento' dentro da prop 'event' */}
+            <Button event={meuEvento} text="Primeiro Evento" /> [00:05:37]
+        </div>
+    );
+}
+2. Executando a Função no Componente Filho
+O componente de nível inferior (o Button.js) recebe a função através do objeto props (ou via desestruturação) [01:55]. Em seguida, basta atrelar essa propriedade diretamente a um evento nativo do JSX, como o onClick [06:09]:
+
+JavaScript
+// No Componente Filho (Button.js)
+function Button({ event, text }) { // Desestruturando as props recebidas
+    return (
+        // O clique no botão dispara a função que veio lá do componente Pai
+        <button onClick={event}>{text}</button> [00:06:09]
+    );
+}
+
+export default Button;
+💡 Duas Dicas Extras de Performance e Organização Visual
+1. Sintaxe de Retorno Curto no JSX
+O instrutor ensina um atalho de código limpo (clean code): se o seu componente filho for muito simples e retornar apenas uma única linha de código HTML/JSX, você pode remover os parênteses de embrulho do bloco return e escrever tudo de forma direta e compacta [04:11]:
+
+JavaScript
+// Sintaxe ultra-reduzida e limpa para componentes de linha única
+function Button({ event, text }) {
+    return <button onClick={event}>{text}</button>; [00:04:20]
+}
+2. Organização de Pastas do Projeto
+Conforme a aplicação cresce, deixar todos os arquivos jogados soltos dentro da pasta components/ gera bagunça [03:06]. Matheus Battisti aconselha a criar subpastas temáticas para agrupar componentes que trabalham juntos (como criar uma subpasta /evento dentro de components/ para guardar os arquivos que pertencem àquela mesma regra visual do sistema) [03:15].
