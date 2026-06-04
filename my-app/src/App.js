@@ -4,16 +4,17 @@ import './App.css';
 // import Pessoa from './components/Pessoa';
 // import Frase from './components/Frase';
 // import List from './components/List';
-import Evento from './components/Evento';
-import Form from './components/Form';
+// import Evento from './components/Evento';
+// import Form from './components/Form';
+import Condicional from './components/Condicional';
 
 function App() {
 
   return (
     <div className='App'>
-      {/* <h1>Testando Eventos</h1> */}
-      <Evento numero='1'></Evento> 
-      <Form></Form>
+      <h1>Renderização condicional</h1>
+
+      <Condicional></Condicional>
     </div>
   )
 }
