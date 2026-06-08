@@ -6,16 +6,19 @@ import './App.css';
 // import List from './components/List';
 // import Evento from './components/Evento';
 //  import Form from './components/Form';
-import Condicional from './components/Condicional';
+// import Condicional from './components/Condicional';
+import OutraLista from './components/OutraLista';
 
 function App() {
 
+  const meuItens = ['React', 'Vue', 'Angular']
+
   return (
     <div className='App'>
-      <h1>Renderização condicional</h1>
+      <h1>Renderização de listas</h1>
 
-      <Condicional></Condicional> 
-
+      <OutraLista itens={meuItens}></OutraLista>
+      <OutraLista itens={[]}></OutraLista>
     </div>
   )
 }

@@ -1,0 +1,38 @@
+No React, nós quase nunca criamos componentes copiando e colando tags manualmente na tela (como fizemos com os dois <Card /> lá no início). No mundo real, nós recebemos uma lista de dados do banco de dados (um Array) e mandamos o React desenhar as tags na tela dinamicamente [00:42, 03:23].
+
+Para fazer isso, o React usa uma função nativa do JavaScript chamada .map() [01:36]. Vou te explicar como ela funciona de um jeito bem prático.
+
+🗺️ Como funciona o .map()?
+Pense no .map() como um "transformador" ou uma esteira de fábrica [01:41]. Ele pega um Array de dados brutos e transforma cada item desse Array em uma tag HTML (JSX) pronta para ir para a tela [02:06].
+
+💻 Exemplo Prático e Simples
+Imagine que você tem uma lista de jogos favoritos no seu App.jsx [03:42]:
+
+JavaScript
+const jogos = ["Halo", "Forza", "Fifa"];
+Para fazer o React mostrar essa lista na tela sem precisar digitar <p> três vezes, você abre chaves {} e faz isso [05:43]:
+
+JavaScript
+<div>
+  <h2>Meus Jogos</h2>
+  
+  {jogos.map((jogo, index) => (
+    <p key={index}>{jogo}</p>
+  ))}
+</div>
+🔍 Dois detalhes vitais que você deve observar na aula:
+1. A Regra do key={} (O erro clássico do console)
+No vídeo, assim que o Matheus joga os dados na tela, o console do navegador solta um erro vermelho reclamando da falta de uma "key" [06:57, 07:04].
+
+Por que isso acontece? O React precisa de um identificador único para cada item da lista (geralmente o ID que vem do banco de dados) [07:12, 07:46]. Isso serve para ele saber exatamente qual item mudar ou deletar no futuro se a lista sofrer alterações [08:15].
+
+Como no exemplo dele era um Array simples de strings, ele usou o index (a posição do item na lista: 0, 1, 2...) dentro do atributo key={index} para calar o erro [07:32, 07:51].
+
+2. O Casamento com a Renderização Condicional
+No final da aula, ele faz uma jogada genial: ele usa um operador ternário (? :) para verificar o tamanho da lista (itens.length > 0) [09:17].
+
+Se a lista tiver itens: ele executa o .map() e desenha a lista [10:24].
+
+Se a lista estiver vazia: ele mostra um texto dizendo "Não há itens na lista" [10:15].
+
+Isso é exatamente o que você vai precisar fazer na sua Vitrine! Se não tiver cards cadastrados, avisa o usuário; se tiver, faz o .map() e joga na tela [10:40].

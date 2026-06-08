@@ -1,0 +1,28 @@
+Com certeza, Raí! É ótimo manter esse histórico de anotações bem guardado. Aqui está o resumo limpo, direto ao ponto e focado na teoria essencial da Aula #12 (Renderização Condicional) para você salvar no seu arquivo:
+
+📝 Aula #12: Renderização Condicional (O "if" no React)
+A Renderização Condicional é o ato de exibir ou esconder um elemento (ou componente) na tela baseado em uma condição lógica (verdadeiro ou falso). No mundo real, usamos isso para fluxos como: mostrar o botão "Sair" apenas se o usuário estiver logado, ou exibir uma mensagem de "Carregando..." enquanto os dados não chegam do servidor.
+
+🛠️ Regra de Ouro do JSX
+Dentro do bloco return () de um componente, não podemos usar a palavra-chave if () { } de forma solta. Para aplicar lógica ali dentro, precisamos abrir chaves {} (que indicam que haverá código JavaScript) e utilizar os operadores lógicos adequados.
+
+1. O Operador Lógico && (Curto-Circuito)
+É usado quando queremos mostrar algo apenas se a condição for verdadeira. Se for falsa, o React não renderiza absolutamente nada.
+
+Sintaxe:
+
+JavaScript
+{ condicao && <p>Este texto só aparece se a condição for TRUE!</p> }
+No exemplo da aula: O Matheus checou se a variável do estado userEmail continha algum texto. Se o campo estivesse preenchido (verdadeiro), a div com a mensagem de sucesso e o botão de limpar eram injetados na tela.
+
+2. O Operador Ternário ? : (O "If / Else" de uma linha)
+É usado quando temos dois caminhos obrigatórios: se for verdade, mostre uma coisa; se for mentira, mostre outra.
+
+Sintaxe:
+
+JavaScript
+{ condicao ? <p>Caso seja VERDADE</p> : <p>Caso seja MENTIRA</p> }
+3. Estados (useState) como Gatilho
+A renderização condicional se torna dinâmica quando é atrelada a um estado. Quando o valor do estado muda (por exemplo, ao clicar em um botão ou enviar um formulário), o React intercepta essa mudança e atualiza a interface no mesmo milissegundo, exibindo ou ocultando os blocos de HTML conforme a nova condição.
+
+Pode copiar e colar no seu documento de estudos! Quando precisar avançar para a próxima anotação ou tiver qualquer dúvida, é só chamar.
