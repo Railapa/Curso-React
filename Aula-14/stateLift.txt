@@ -1,0 +1,50 @@
+🏔️ O que é o State Lift (Elevação de Estado)?
+No React, os dados fluem apenas em uma direção: de cima para baixo (do pai para o filho, através de props) [01:09].
+
+O problema acontece quando você tem dois componentes irmãos (que estão no mesmo nível) e um precisa saber o que o outro está fazendo [00:54]. No React, um irmão não consegue conversar diretamente com o outro [01:01].
+
+💡 A Analogia do Rádio Amador
+Imagine dois seguranças em um evento (Irmão X e Irmão Y). O Irmão X não tem o número do Irmão Y. Para eles se comunicarem, o Irmão X fala no rádio com a Central (O Pai). A Central ouve a mensagem e repassa a informação pelo rádio para o Irmão Y.
+
+Fazer o State Lift é exatamente isso: tirar o useState de dentro do componente filho e "elevar" (subir) ele para o componente pai [01:09, 01:39]. Assim, o pai consegue controlar o estado e distribuir a informação para quem precisar [01:15].
+
+🔍 Como o Matheus aplicou isso no vídeo:
+Ele criou dois componentes irmãos no projeto [03:48]:
+
+SeuNome.jsx: Um componente que tem apenas um <input> para digitar o nome [02:49].
+
+Saudacao.jsx: Um componente que apenas mostra um texto de boas-vindas na tela (ex: "Olá, Raí, tudo bem?") [05:46, 07:43].
+
+O problema:
+Se o useState do nome ficasse preso dentro do input (SeuNome.jsx), o componente de Saudacao.jsx nunca iria descobrir o que foi digitado [03:22].
+
+A solução detalhada (Passo a Passo) [03:35]:
+Passo 1: O Pai assume o controle (App.js)
+O Matheus colocou a criação do useState direto no App.js [03:41]:
+
+JavaScript
+const [nome, setNome] = useState('');
+Passo 2: O Pai passa a função de alterar para o primeiro filho
+Ele renderizou o input e passou a função setNome como uma prop [04:14, 04:27]:
+
+JavaScript
+<SeuNome setNome={setNome} />
+Lá dentro do input (SeuNome.jsx), toda vez que o usuário digita uma letra (onChange), ele chama essa prop setNome(e.target.value) [04:46, 04:58]. Isso atualiza o estado lá no pai!
+
+Passo 3: O Pai passa o valor atualizado para o segundo filho
+Como o estado mudou no pai, ele passa a variável nome atualizada para o componente de saudação [06:28]:
+
+JavaScript
+<Saudacao nome={nome} />
+O componente Saudacao.jsx recebe esse nome via props e mostra o texto bonitinho na tela [06:47].
+
+🎯 Resumo de Caneta e Papel (Para o seu arquivo):
+State Lift (Elevação de Estado): É a técnica de mover o useState para o componente pai mais próximo quando dois ou mais componentes filhos precisam compartilhar do mesmo estado [00:39, 10:35].
+
+O componente que captura o dado recebe a função modificadora (set...) via props para poder alterar o valor lá no pai [01:47, 04:35].
+
+O componente que exibe o dado recebe a variável do estado pura via props para poder desenhá-la na tela [01:47, 06:28].
+
+Isso é exatamente o que você já fez lá na Aula #11 do formulário da sua Vitrine, onde o Formulario.jsx enviava os dados do card novo para o App.jsx através de uma função! O Matheus apenas formalizou o nome desse padrão nesta aula.
+
+Ficou claro como essa estrutura em rádio funciona para conectar componentes irmãos? Se quiser, pode salvar esse resumo no seu arquivo!
