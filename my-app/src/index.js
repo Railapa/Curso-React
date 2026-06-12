@@ -4,6 +4,24 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import{createBrowserRouter,RouterProvider} from'react-router-dom'
+
+import Home from './Routes/Home';
+import Contact from './Routes/Contact';
+
+const router = createBrowserRouter([
+  {
+    path:"/",
+    element: <Home />,
+  },
+
+  {
+    path: "/",
+    element: <Contact />,
+  }
+
+])
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>

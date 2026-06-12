@@ -16,7 +16,7 @@ function App() {
 
   return (
     <div className='App'>
-      <h1>State Lift</h1>
+      <h1>React Router</h1>
 
     </div>
   )
