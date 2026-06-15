@@ -1,0 +1,73 @@
+Etapa 1: O que é o React Router Dom e Configuração [00:00]
+O React Router Dom é uma biblioteca que gerencia a URL do navegador para decidir qual componente deve aparecer na tela [00:22]. O principal objetivo dele é transformar o site em um SPA (Single Page Application), ou seja, um site onde você muda de página instantaneamente sem que o navegador precise recarregar do zero [17:06].
+
+Instalação: No terminal, ele instala a biblioteca usando o comando npm install react-router-dom@6 [05:13].
+
+Preparação: Ele limpa os arquivos padrões do Vite e cria componentes básicos (como Home e About) organizados em pastas para servir de páginas [06:02].
+
+Etapa 2: Criando as Primeiras Rotas [09:50]
+Aqui é criada a estrutura básica que vigia a URL do site. Para isso, são importados três elementos fundamentais do react-router-dom [11:12]:
+
+As Importações:
+
+BrowserRouter: É o componente pai que envolve toda a aplicação. Ele funciona como o "gerenciador de contexto" que dá superpoderes de rotas ao site [10:20].
+
+Routes: Funciona de forma muito parecida com um bloco switch/if do JavaScript. Ele analisa o endereço atual do navegador e escolhe apenas uma rota para renderizar [11:25].
+
+Route: É a definição de cada rota individual [12:36].
+
+Como aplicar no código:
+
+JavaScript
+<BrowserRouter>
+  <Routes>
+    <Route path="/" element={<Home />} />
+    <Route path="/about" element={<About />} />
+  </Routes>
+</BrowserRouter>
+O atributo path define o texto que fica na barra de endereços (ex: /about), e o element recebe o componente que deve ser aberto [13:41].
+
+Etapa 3: Navegação SPA (A diferença entre <a> e <Link>) [17:31]
+O professor cria um componente de Menu para navegar entre as páginas e explica um conceito crucial sobre performance no React [18:04]:
+
+O problema da tag <a>: Se usarmos a tag tradicional <a href="/about">, o navegador faz um recarregamento total da página (Full Reload), limpando toda a memória e os estados (useState) que você tinha salvos no React [21:03].
+
+A solução com <Link>: Importamos o componente Link do react-router-dom [22:07]. Em vez de usar href, usamos o atributo to [22:20]:
+
+JavaScript
+<Link to="/about">Sobre</Link>
+Ele intercepta o clique do usuário, muda o endereço na barra do navegador e troca o componente na tela sem piscar ou recarregar a página [22:45].
+
+Etapa 4: Parâmetros Dinâmicos e Query Strings [23:29]
+Sistemas reais precisam de rotas que mudam de valor, como a página de um post específico de um blog (/posts/10 ou /posts/25) [25:25].
+
+Parâmetros (useParams): Para criar uma rota dinâmica, adicionamos dois pontos : antes do nome do parâmetro na configuração da rota, por exemplo: path="/posts/:id" [27:05].
+Para ler esse valor dentro do componente da página, importamos o Hook useParams() [28:47]. Ele nos devolve um objeto contendo o valor exato digitado na URL (ex: { id: "10" }) [29:25].
+
+Query Strings (useSearchParams):
+São aqueles parâmetros de busca opcionais que ficam após a interrogação na URL (ex: /posts?page=2) [30:21]. O professor utiliza o Hook useSearchParams() para extrair esses dados de forma muito parecida com um useState comum, capturando os valores com o método .get('page') [32:02].
+
+Etapa 5: Redirecionamento e Página de Erro 404 [33:14]
+O professor mostra como mudar o usuário de página de forma automática usando código JavaScript (por exemplo, após o término de um cronômetro) [35:02].
+
+O Hook useNavigate: É a ferramenta usada para redirecionar programaticamente [35:49]. Ao chamar const navigate = useNavigate(), você ganha uma função onde basta passar o caminho desejado, como Maps('/about'), para mandar o usuário para lá instantaneamente [37:27].
+
+Página 404 (Not Found) [38:32]: Para criar uma página que aparece quando o usuário digita uma URL que não existe, criamos uma <Route> com o path="*" (asterisco) [39:06]. O asterisco funciona como um "pega-tudo": se o React Router passar por todas as rotas e não achar nenhuma combinação, ele renderiza o componente dessa rota [39:14].
+
+Etapa 6: Rotas Aninhadas (Nested Routes) e Outlet [39:50]
+Rotas aninhadas servem para quando queremos manter um layout fixo na tela (como um painel lateral) e mudar apenas um pequeno trecho interno da página com base na URL [41:05].
+
+Configuração: Colocamos uma tag <Route> fechada dentro de outra tag <Route> [41:30].
+
+O componente <Outlet />: Importado do react-router-dom, o Outlet funciona como um "marcador de lugar" [42:41]. Você coloca a tag <Outlet /> dentro do componente pai exatamente no local onde quer que o componente filho "brote" na tela quando a URL correspondente for acessada [42:41].
+
+Etapa 7: Carregando Estado entre Páginas [45:05]
+Por fim, é ensinado como enviar uma informação (uma memória/estado) diretamente de uma página para outra durante a navegação, sem precisar usar Context API ou Redux [48:38].
+
+Enviando dados: Tanto o componente <Link> quanto a função do Maps() aceitam uma propriedade chamada state [46:02]. Você pode passar qualquer informação ali dentro:
+
+JavaScript
+<Link to="/about" state="Dado vindo da Home">Ir para Sobre</Link>
+Recebendo dados (useLocation): Na página de destino, importamos o Hook useLocation() [46:58]. Através de location.state, conseguimos recuperar exatamente a string ou objeto que foi enviado pela página anterior [47:07].
+
+Esse fluxo resume todas as ferramentas poderosas que o React Router Dom v6 oferece para gerenciar a navegação interna de qualquer aplicação moderna! Ficou mais claro de entender a divisão e o papel de cada hook agora?
