@@ -8,9 +8,10 @@ import './App.css';
 //  import Form from './components/Form';
 // import Condicional from './components/Condicional';
 // import OutraLista from './components/OutraLista';
-import { useState } from 'react';
+// import { useState } from 'react';
 // import SeuNome from './components/SeuNome';
 // import Saudacao from './components/Saudacao';
+import Footer from './components/Footer';
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
     <div className='App'>
       <h1>React Router</h1>
 
+      <Footer></Footer>
     </div>
   )
 }
